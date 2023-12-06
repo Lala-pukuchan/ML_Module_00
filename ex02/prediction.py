@@ -15,3 +15,18 @@ def simple_predict(x, theta):
 
     y_hat = theta[1] * x + theta[0]
     return y_hat
+
+
+# x = np.arange(1, 6)
+
+# theta1 = np.array([5, 0])
+# print("Example 1:", simple_predict(x, theta1))
+
+# theta2 = np.array([0, 1])
+# print("Example 2:", simple_predict(x, theta2))
+
+# theta3 = np.array([5, 3])
+# print("Example 3:", simple_predict(x, theta3))
+
+# theta4 = np.array([-3, 1])
+# print("Example 4:", simple_predict(x, theta4))

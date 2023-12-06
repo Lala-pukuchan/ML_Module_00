@@ -1,52 +1,78 @@
 import numpy as np
 
+
 class TinyStatistician:
-    def __init__(self, input_data):
-        if isinstance(input_data, list, np.ndarray):
-            self.data = input_data
-        else:
-            raise TypeError("Wrong input data type")
-    
-    def mean(self):
-        # return none (indicating that the function does not return anything.)
-        if len(self.data) == 0:
+    # staticmethod is callable without instantiating the class.
+    @staticmethod
+    def mean(data):
+        if not isinstance(data, (list, np.ndarray)) or len(data) == 0:
             return None
 
         total_sum = 0
-        for value in self.data:
+        for value in data:
             total_sum += value
-        return total_sum / len(self.data)
+        return total_sum / len(data)
 
-    def median(self):
-        if len(self.data) == 0:
-            return None
-
-        sorted_data = sorted(self.data)
-        if len(sorted_data) % 2 == 1:
-            return sorted_data[len(sorted_data) // 2]
-        else:
-            return (sorted_data[len(sorted_data) // 2] + sorted_data[len(sorted_data) // 2 - 1]) / 2
-        
-    def quartile(data):
-        if len(data) == 0:
+    @staticmethod
+    def median(data):
+        if not isinstance(data, (list, np.ndarray)) or len(data) == 0:
             return None
 
         sorted_data = sorted(data)
+        mid_index = len(sorted_data) // 2
+        if len(sorted_data) % 2 == 1:
+            return float(sorted_data[mid_index])
+        else:
+            return (sorted_data[mid_index] + sorted_data[mid_index - 1]) / 2
 
-        def percentile(arr, percent):
-            index = (len(arr) - 1) * percent
-            lower = int(index)
-            upper = lower + 1
-            # 0 <= weight <= 1
-            weight = index - lower
-            if upper >= len(arr):
-                return arr[lower]
-            else:
-                return arr[lower] * (1 - weight) + arr[upper] * weight
+    @staticmethod
+    def percentile(data, percent):
+        if not isinstance(data, (list, np.ndarray)) or len(data) == 0:
+            return None
 
-        q1 = percentile(sorted_data, 0.25)
-        q3 = percentile(sorted_data, 0.75)
+        arr = sorted(data)
+        index = (len(arr) - 1) * percent / 100
+        lower = int(index)
+        upper = lower + 1
+        weight = index - lower
+        if upper >= len(arr):
+            return arr[lower]
+        else:
+            return arr[lower] * (1 - weight) + arr[upper] * weight
 
-        return [q1, q3]
+    @staticmethod
+    def quartile(data):
+        if not isinstance(data, (list, np.ndarray)) or len(data) == 0:
+            return None
 
-    
+        sorted_data = sorted(data)
+        n = len(sorted_data)
+
+        q1_index = (n - 1) // 4
+        q3_index = 3 * (n - 1) // 4
+
+        if n % 2 == 0:
+            q1 = (sorted_data[q1_index] + sorted_data[q1_index + 1]) / 2
+            q3 = (sorted_data[q3_index] + sorted_data[q3_index + 1]) / 2
+        else:
+            q1 = sorted_data[q1_index]
+            q3 = sorted_data[q3_index]
+
+        return [float(q1), float(q3)]
+
+    @staticmethod
+    def var(data):
+        if not isinstance(data, (list, np.ndarray)) or len(data) == 0:
+            return None
+
+        mean_val = sum(data) / len(data)
+
+        variance = sum((x - mean_val) ** 2 for x in data) / (len(data) - 1)
+        return variance
+
+    @staticmethod
+    def std(data):
+        if not isinstance(data, (list, np.ndarray)) or len(data) == 0:
+            return None
+
+        return TinyStatistician.var(data) ** 0.5

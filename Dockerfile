@@ -7,4 +7,5 @@ RUN pip install --upgrade pip && \
     pip install --upgrade numpy && \
     pip install --upgrade matplotlib && \
     pip install --upgrade pycodestyle && \
-    pip install --upgrade black
+    pip install --upgrade black && \
+    pip install --upgrade scikit-learn

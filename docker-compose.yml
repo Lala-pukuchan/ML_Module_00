@@ -4,7 +4,7 @@ services:
   ml-00:
     build: .
     tty: true
-    volumes:
-      - ./:/app
+    #volumes:
+    #  - ./:/app
     ports:
       - "8888:8888"

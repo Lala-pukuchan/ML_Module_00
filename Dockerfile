@@ -14,4 +14,4 @@ RUN pip install --upgrade pip && \
 
 ENV PYTHONPATH /app
 
-#ENTRYPOINT ["./test.sh"]
+ENTRYPOINT ["./test.sh"]

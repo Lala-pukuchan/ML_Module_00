@@ -15,8 +15,11 @@ def add_intercept(x):
     return np.hstack((intercept, x))
 
 
-# x = np.arange(1, 6)
-# print("Example 1:", add_intercept(x))
+output_file = "results/ex03/result_ex03.txt"
 
-# y = np.arange(1, 10).reshape((3, 3))
-# print("Example 2:", add_intercept(y))
+with open(output_file, "w") as file:
+    x = np.arange(1, 6)
+    print("Example 1:", add_intercept(x), file=file)
+
+    y = np.arange(1, 10).reshape((3, 3))
+    print("Example 2:", add_intercept(y), file=file)

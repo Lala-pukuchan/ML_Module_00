@@ -6,7 +6,7 @@ import matplotlib
 matplotlib.use("Agg")
 
 
-def plot(x, y, theta):
+def plot(x, y, theta, output_file):
     """Plot the data and prediction line from three non-empty numpy.array.
     Args:
     x: has to be an numpy.array, a vector of dimension m * 1.
@@ -44,17 +44,21 @@ def plot(x, y, theta):
     plt.legend()
 
     # Save the plot to a file
-    plt.savefig("plot.png")
+    plt.savefig(output_file)
     plt.close()
 
 
-# x = np.arange(1,6)
-# y = np.array([3.74013816, 3.61473236, 4.57655287, 4.66793434, 5.95585554])
-# theta1 = np.array([[4.5],[-0.2]])
-# plot(x, y, theta1)
+output_file_1 = "results/ex05/result_ex05_figure1"
+output_file_2 = "results/ex05/result_ex05_figure2"
+output_file_3 = "results/ex05/result_ex05_figure3"
 
-# theta2 = np.array([[-1.5],[2]])
-# plot(x, y, theta2)
+x = np.arange(1, 6)
+y = np.array([3.74013816, 3.61473236, 4.57655287, 4.66793434, 5.95585554])
+theta1 = np.array([[4.5], [-0.2]])
+plot(x, y, theta1, output_file_1)
 
-# theta3 = np.array([[3],[0.3]])
-# plot(x, y, theta3)
+theta2 = np.array([[-1.5], [2]])
+plot(x, y, theta2, output_file_2)
+
+theta3 = np.array([[3], [0.3]])
+plot(x, y, theta3, output_file_3)

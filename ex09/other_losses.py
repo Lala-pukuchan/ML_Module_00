@@ -41,17 +41,20 @@ def r2score_(y, y_hat):
     return 1 - u / v
 
 
-# x = np.array([0, 15, -9, 7, 12, 3, -21])
-# y = np.array([2, 14, -13, 5, 12, 4, -19])
-# print("--- MSE ---")
-# print(mse_(x,y))
-# print(mean_squared_error(x,y))
-# print("--- RMSE ---")
-# print(rmse_(x,y))
-# print(sqrt(mean_squared_error(x,y)))
-# print("--- MAE ---")
-# print(mae_(x,y))
-# print(mean_absolute_error(x,y))
-# print("--- R2 ---")
-# print(r2score_(x,y))
-# print(r2_score(x,y))
+output_file = "results/ex09/result_ex09.txt"
+
+with open(output_file, "w") as file:
+    x = np.array([0, 15, -9, 7, 12, 3, -21])
+    y = np.array([2, 14, -13, 5, 12, 4, -19])
+    print("--- MSE ---", file=file)
+    print(mse_(x, y), file=file)
+    print(mean_squared_error(x, y), file=file)
+    print("--- RMSE ---", file=file)
+    print(rmse_(x, y), file=file)
+    print(sqrt(mean_squared_error(x, y)), file=file)
+    print("--- MAE ---", file=file)
+    print(mae_(x, y), file=file)
+    print(mean_absolute_error(x, y), file=file)
+    print("--- R2 ---", file=file)
+    print(r2score_(x, y), file=file)
+    print(r2_score(x, y), file=file)

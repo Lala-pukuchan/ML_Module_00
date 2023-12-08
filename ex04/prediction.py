@@ -31,16 +31,19 @@ def predict_(x, theta):
     return y_hat
 
 
-# x = np.arange(1, 6)
+output_file = "results/ex04/result_ex04.txt"
 
-# theta1 = np.array([[5], [0]])
-# print("Example 1:", predict_(x, theta1))
+with open(output_file, "w") as file:
+    x = np.arange(1, 6)
 
-# theta2 = np.array([[0], [1]])
-# print("Example 2:", predict_(x, theta2))
+    theta1 = np.array([[5], [0]])
+    print("Example 1:", predict_(x, theta1), file=file)
 
-# theta3 = np.array([[5], [3]])
-# print("Example 3:", predict_(x, theta3))
+    theta2 = np.array([[0], [1]])
+    print("Example 2:", predict_(x, theta2), file=file)
 
-# theta4 = np.array([[-3], [1]])
-# print("Example 4:", predict_(x, theta4))
+    theta3 = np.array([[5], [3]])
+    print("Example 3:", predict_(x, theta3), file=file)
+
+    theta4 = np.array([[-3], [1]])
+    print("Example 4:", predict_(x, theta4), file=file)

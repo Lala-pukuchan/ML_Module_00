@@ -78,15 +78,17 @@ class TinyStatistician:
         return TinyStatistician.var(data) ** 0.5
 
 
-a = [1, 42, 300, 10, 59]
+output_file = "results/ex01/result_ex01.txt"
 
-ts = TinyStatistician()
+with open(output_file, "w") as file:
 
-print("Mean:", ts.mean(a))
-print("Median:", ts.median(a))
-print("Quartiles:", ts.quartile(a))
-print("10th Percentile:", ts.percentile(a, 10))
-print("15th Percentile:", ts.percentile(a, 15))
-print("20th Percentile:", ts.percentile(a, 20))
-print("Variance:", ts.var(a))
-print("Standard Deviation:", ts.std(a))
+    a = [1, 42, 300, 10, 59]
+    ts = TinyStatistician()
+    print("Mean:", ts.mean(a), file=file)
+    print("Median:", ts.median(a), file=file)
+    print("Quartiles:", ts.quartile(a), file=file)
+    print("10th Percentile:", ts.percentile(a, 10), file=file)
+    print("15th Percentile:", ts.percentile(a, 15), file=file)
+    print("20th Percentile:", ts.percentile(a, 20), file=file)
+    print("Variance:", ts.var(a), file=file)
+    print("Standard Deviation:", ts.std(a), file=file)

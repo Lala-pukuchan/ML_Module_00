@@ -26,7 +26,11 @@ def loss_(y, y_hat):
     return 0.5 * mse
 
 
-X = np.array([[0], [15], [-9], [7], [12], [3], [-21]])
-Y = np.array([[2], [14], [-13], [5], [12], [4], [-19]])
-print(loss_(X, Y))
-print(loss_(X, X))
+output_file = "results/ex07/result_ex07.txt"
+
+with open(output_file, "w") as file:
+
+    X = np.array([[0], [15], [-9], [7], [12], [3], [-21]])
+    Y = np.array([[2], [14], [-13], [5], [12], [4], [-19]])
+    print("loss_(X, Y):", loss_(X, Y), file=file)
+    print("loss_(X, X)", loss_(X, X), file=file)

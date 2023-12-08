@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def simple_predict(x, theta):
     """Computes the vector of prediction y_hat from two non-empty
     numpy.ndarray. Args:
@@ -17,16 +20,20 @@ def simple_predict(x, theta):
     return y_hat
 
 
-# x = np.arange(1, 6)
+output_file = "results/ex02/result_ex02.txt"
 
-# theta1 = np.array([5, 0])
-# print("Example 1:", simple_predict(x, theta1))
+with open(output_file, "w") as file:
 
-# theta2 = np.array([0, 1])
-# print("Example 2:", simple_predict(x, theta2))
+    x = np.arange(1, 6)
 
-# theta3 = np.array([5, 3])
-# print("Example 3:", simple_predict(x, theta3))
+    theta1 = np.array([5, 0])
+    print("Example 1:", simple_predict(x, theta1), file=file)
 
-# theta4 = np.array([-3, 1])
-# print("Example 4:", simple_predict(x, theta4))
+    theta2 = np.array([0, 1])
+    print("Example 2:", simple_predict(x, theta2), file=file)
+
+    theta3 = np.array([5, 3])
+    print("Example 3:", simple_predict(x, theta3), file=file)
+
+    theta4 = np.array([-3, 1])
+    print("Example 4:", simple_predict(x, theta4), file=file)

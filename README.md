@@ -14,6 +14,10 @@ pycodestyle <filename>
 ```
 black <filename>
 ```
+## for copying docker file
+```
+docker cp <docker container id>:/app/results .
+```
 
 ## conclusion
 1. Why do we concatenate a column of ones to the left of the x vector when we use the linear algebra trick?

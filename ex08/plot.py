@@ -38,23 +38,6 @@ def plot_with_loss(x, y, theta, output_file):
     plt.savefig(output_file)
     plt.close()
 
-
-# output_file_1 = "results/ex08/result_ex08_figure1"
-# output_file_2 = "results/ex08/result_ex08_figure2"
-# output_file_3 = "results/ex08/result_ex08_figure3"
-
-# x = np.arange(1, 6)
-# y = np.array([11.52434424, 10.62589482, 13.14755699, 18.60682298, 14.14329568])
-# theta1 = np.array([18, -1])
-# plot_with_loss(x, y, theta1, output_file_1)
-
-# theta2 = np.array([14, 0])
-# plot_with_loss(x, y, theta2, output_file_2)
-
-# theta3 = np.array([12, 0.8])
-# plot_with_loss(x, y, theta3, output_file_3)
-
-
 output_file_1 = "results/ex08/result_ex08_figure1"
 output_file_2 = "results/ex08/result_ex08_figure2"
 output_file_3 = "results/ex08/result_ex08_figure3"

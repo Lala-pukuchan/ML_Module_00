@@ -1,5 +1,5 @@
 import numpy as np
-
+import math
 
 class TinyStatistician:
     # staticmethod is callable without instantiating the class.
@@ -42,23 +42,28 @@ class TinyStatistician:
 
     @staticmethod
     def quartile(data):
+
+        # input validation
         if not isinstance(data, (list, np.ndarray)) or len(data) == 0:
             return None
 
+        # sort data
         sorted_data = sorted(data)
+        
+        # take the length and adjust for index
         n = len(sorted_data)
+        n -= 1
 
-        q1_index = (n - 1) // 4
-        q3_index = 3 * (n - 1) // 4
+        # calculate quartile point
+        q1_point = 0.25 * (n)
+        q3_point = 0.75 * (n)
 
-        if n % 2 == 0:
-            q1 = (sorted_data[q1_index] + sorted_data[q1_index + 1]) / 2
-            q3 = (sorted_data[q3_index] + sorted_data[q3_index + 1]) / 2
-        else:
-            q1 = sorted_data[q1_index]
-            q3 = sorted_data[q3_index]
+        # round up for getting index
+        q1_index = int(round(q1_point))
+        q3_index = int(round(q3_point))
 
-        return [float(q1), float(q3)]
+        # return the exact value in an array
+        return [sorted_data[q1_index], sorted_data[q3_index]]
 
     @staticmethod
     def var(data):
@@ -81,14 +86,31 @@ class TinyStatistician:
 output_file = "results/ex01/result_ex01.txt"
 
 with open(output_file, "w") as file:
+    print("section.1 -------------------------------", file=file)
 
     a = [1, 42, 300, 10, 59]
     ts = TinyStatistician()
-    print("Mean:", ts.mean(a), file=file)
-    print("Median:", ts.median(a), file=file)
-    print("Quartiles:", ts.quartile(a), file=file)
-    print("10th Percentile:", ts.percentile(a, 10), file=file)
-    print("15th Percentile:", ts.percentile(a, 15), file=file)
-    print("20th Percentile:", ts.percentile(a, 20), file=file)
-    print("Variance:", ts.var(a), file=file)
-    print("Standard Deviation:", ts.std(a), file=file)
+
+    print("Mean:\n", ts.mean(a), file=file)
+    print("expected Mean:\n 82.4", file=file)
+
+    print("Median:\n", ts.median(a), file=file)
+    print("expected Median:\n 42.0", file=file)
+
+    print("Quartiles:\n", ts.quartile(a), file=file)
+    print("expected Quartiles:\n [10.0, 59.0]", file=file)
+
+    print("10th Percentile:\n", ts.percentile(a, 10), file=file)
+    print("expected 10th Percentile:\n 4.6", file=file)
+
+    print("15th Percentile:\n", ts.percentile(a, 15), file=file)
+    print("expected 15th Percentile:\n 6.4", file=file)
+
+    print("20th Percentile:\n", ts.percentile(a, 20), file=file)
+    print("expected 20th Percentile:\n 8.2", file=file)
+
+    print("Variance:\n", ts.var(a), file=file)
+    print("expected Variance:\n 15349.3", file=file)
+
+    print("Standard Deviation:\n", ts.std(a), file=file)
+    print("expected Standard Deviation:\n 123.89229193133849", file=file)

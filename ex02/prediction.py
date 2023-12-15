@@ -26,14 +26,22 @@ with open(output_file, "w") as file:
 
     x = np.arange(1, 6)
 
-    theta1 = np.array([5, 0])
-    print("Example 1:", simple_predict(x, theta1), file=file)
+    print("---test1---", file=file)
+    theta1 = np.array([0, 0])
+    print("result:\n", simple_predict(x, theta1), file=file)
+    print("expected:\n", np.array([0, 0, 0, 0, 0]), file=file)
 
-    theta2 = np.array([0, 1])
-    print("Example 2:", simple_predict(x, theta2), file=file)
+    print("---test2---", file=file)
+    theta1 = np.array([1, 0])
+    print("result:\n", simple_predict(x, theta1), file=file)
+    print("expected:\n", np.array([1, 1, 1, 1, 1]), file=file)
 
-    theta3 = np.array([5, 3])
-    print("Example 3:", simple_predict(x, theta3), file=file)
+    print("---test3---", file=file)
+    theta1 = np.array([0, 1])
+    print("result:\n", simple_predict(x, theta1), file=file)
+    print("expected:\n", np.array([1, 2, 3, 4, 5]), file=file)
 
-    theta4 = np.array([-3, 1])
-    print("Example 4:", simple_predict(x, theta4), file=file)
+    print("---test4---", file=file)
+    theta1 = np.array([1, 1])
+    print("result:\n", simple_predict(x, theta1), file=file)
+    print("expected:\n", np.array([2, 3, 4, 5, 6]), file=file)

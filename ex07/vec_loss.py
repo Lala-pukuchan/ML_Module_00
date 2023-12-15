@@ -21,16 +21,28 @@ def loss_(y, y_hat):
     if y.shape != y_hat.shape:
         return None
 
-    # Compute the half mean squared error
-    mse = np.mean((y_hat - y) ** 2)
-    return 0.5 * mse
-
+    # vectorized loss function
+    m = len(y)
+    loss = np.dot((y_hat - y).T, (y_hat - y)) / (2 * m)
+    return loss.item()
 
 output_file = "results/ex07/result_ex07.txt"
 
 with open(output_file, "w") as file:
+    print("---test.1---", file=file)
+    y_hat = np.array([[1], [2], [3], [4]])
+    y = np.array([[1], [2], [3], [4]])
+    print("Loss:\n", loss_(y, y_hat), file=file)
+    print("expected Loss:\n 0", file=file)
 
-    X = np.array([[0], [15], [-9], [7], [12], [3], [-21]])
-    Y = np.array([[2], [14], [-13], [5], [12], [4], [-19]])
-    print("loss_(X, Y):", loss_(X, Y), file=file)
-    print("loss_(X, X)", loss_(X, X), file=file)
+    print("\n---test.2---", file=file)
+    y_hat = np.array([[1], [2], [3], [4]])
+    y = np.array([[0], [0], [0], [0]])
+    print("Loss:\n", loss_(y, y_hat), file=file)
+    print("expected Loss:\n 3.75", file=file)
+
+    print("\n---test.3---", file=file)
+    y_hat = np.array([[1], [2], [4], [8]])
+    y = np.array([[1], [1], [1], [1]])
+    print("Loss:\n", loss_(y, y_hat), file=file)
+    print("expected Loss:\n 7.375", file=file)

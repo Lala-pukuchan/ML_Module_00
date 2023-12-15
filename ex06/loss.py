@@ -23,7 +23,7 @@ def loss_elem_(y, y_hat):
     if y.shape != y_hat.shape:
         return None
 
-    return (y_hat - y) ** 2
+    return ((y_hat - y) ** 2) / (2 * len(y))
 
 
 def loss_(y, y_hat):
@@ -46,7 +46,7 @@ def loss_(y, y_hat):
     if y.shape != y_hat.shape:
         return None
 
-    return np.mean((y_hat - y) ** 2) / 2
+    return np.sum(loss_elem_(y, y_hat))
 
 
 def predict_(x, theta):
@@ -62,17 +62,32 @@ def predict_(x, theta):
 output_file = "results/ex06/result_ex06.txt"
 
 with open(output_file, "w") as file:
+    print("---test.1---", file=file)
+    y_hat = np.array([[1], [2], [3], [4]])
+    y = np.array([[1], [2], [3], [4]])
+    print("Loss Elements:\n", loss_elem_(y, y_hat), file=file)
+    print("expected Loss Elements:\n", np.array([[0], [0], [0], [0]]), file=file)
+    print("Loss:\n", loss_(y, y_hat), file=file)
+    print("expected Loss:\n 0", file=file)
 
-    x1 = np.array([[0.0], [1.0], [2.0], [3.0], [4.0]])
-    theta1 = np.array([[2.0], [4.0]])
-    y_hat1 = predict_(x1, theta1)
-    y1 = np.array([[2.0], [7.0], [12.0], [17.0], [22.0]])
-    print("Example 1 Loss Elements:", loss_elem_(y1, y_hat1), file=file)
-    print("Example 1 Loss:", loss_(y1, y_hat1), file=file)
+    print("\n---test.2---", file=file)
+    y_hat = np.array([[1], [2], [3], [4]])
+    y = np.array([[0], [0], [0], [0]])
+    print("Loss Elements:\n", loss_elem_(y, y_hat), file=file)
+    print(
+        "expected Loss Elements:\n", np.array([[0.125], [0.5], [1.125], [2]]), file=file
+    )
+    print("Loss:\n", loss_(y, y_hat), file=file)
+    print("expected Loss:\n 3.75", file=file)
 
-    x2 = np.array([0, 15, -9, 7, 12, 3, -21]).reshape(-1, 1)
-    theta2 = np.array([[0.0], [1.0]])
-    y_hat2 = predict_(x2, theta2)
-    y2 = np.array([2, 14, -13, 5, 12, 4, -19]).reshape(-1, 1)
-    print("Example 2 Loss:", loss_(y2, y_hat2), file=file)
-    print("Example 3 Loss:", loss_(y2, y2), file=file)
+    print("\n---test.3---", file=file)
+    y_hat = np.array([[1], [2], [4], [8]])
+    y = np.array([[1], [1], [1], [1]])
+    print("Loss Elements:\n", loss_elem_(y, y_hat), file=file)
+    print(
+        "expected Loss Elements:\n",
+        np.array([[0], [0.125], [1.125], [6.125]]),
+        file=file,
+    )
+    print("Loss:\n", loss_(y, y_hat), file=file)
+    print("expected Loss:\n 7.375", file=file)

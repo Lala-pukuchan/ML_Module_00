@@ -15,20 +15,32 @@ def predict_(x, theta):
     This function should not raise any Exceptions.
     """
 
+    # x and theta should be array
     if not isinstance(x, np.ndarray) or not isinstance(theta, np.ndarray):
         return None
+
+    # x and theta shouldn't be empty
     if x.size == 0 or theta.size == 0:
         return None
-    if theta.shape != (2, 1) or x.ndim != 1:
-        return None
 
-    # -1 is a placeholder for the number of rows when not known
+    # reshape x if it's column vector
     if x.ndim == 1:
         x = x.reshape(-1, 1)
 
+    # reshape theta if it's array
+    if theta.ndim != 2:
+        theta = theta.reshape(-1, 1)
+
+    # theta should be 2*1 and x should be m*1
+    if theta.shape != (2, 1) or x.shape[1] != 1:
+        return None
+
+    # insert 1 to x's first column
+    x_insert = np.hstack((np.ones((x.shape[0], 1)), x))
+
     # Compute the prediction
-    y_hat = theta[0] + theta[1] * x
-    return y_hat
+    y_hat = np.dot(x_insert, theta)
+    return y_hat.ravel()
 
 
 output_file = "results/ex04/result_ex04.txt"
@@ -36,14 +48,22 @@ output_file = "results/ex04/result_ex04.txt"
 with open(output_file, "w") as file:
     x = np.arange(1, 6)
 
-    theta1 = np.array([[5], [0]])
-    print("Example 1:", predict_(x, theta1), file=file)
+    print("---test1---", file=file)
+    theta1 = np.array([0, 0])
+    print("result:\n", predict_(x, theta1), file=file)
+    print("expected:\n", np.array([0, 0, 0, 0, 0]), file=file)
 
-    theta2 = np.array([[0], [1]])
-    print("Example 2:", predict_(x, theta2), file=file)
+    print("---test2---", file=file)
+    theta1 = np.array([1, 0])
+    print("result:\n", predict_(x, theta1), file=file)
+    print("expected:\n", np.array([1, 1, 1, 1, 1]), file=file)
 
-    theta3 = np.array([[5], [3]])
-    print("Example 3:", predict_(x, theta3), file=file)
+    print("---test3---", file=file)
+    theta1 = np.array([0, 1])
+    print("result:\n", predict_(x, theta1), file=file)
+    print("expected:\n", np.array([1, 2, 3, 4, 5]), file=file)
 
-    theta4 = np.array([[-3], [1]])
-    print("Example 4:", predict_(x, theta4), file=file)
+    print("---test4---", file=file)
+    theta1 = np.array([1, 1])
+    print("result:\n", predict_(x, theta1), file=file)
+    print("expected:\n", np.array([2, 3, 4, 5, 6]), file=file)

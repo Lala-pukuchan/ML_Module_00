@@ -1,9 +1,6 @@
-import sys
-
-sys.path.append("/path/to/ex01")
-
 from TinyStatistician import TinyStatistician as ts
 
+print("test...")
 data = [42, 7, 69, 18, 352, 3, 650, 754, 438, 2659]
 epsilon = 1e-5
 err = "Error, grade 0 :("
@@ -22,3 +19,5 @@ assert abs(tstat.percentile(data, 83) - 754) < epsilon, err
 
 assert abs(tstat.var(data) - 654661) < epsilon, err
 assert abs(tstat.std(data) - 809.11) < epsilon, err
+
+print("there is no error!")

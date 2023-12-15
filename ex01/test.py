@@ -1,5 +1,6 @@
 import sys
-sys.path.append('/path/to/ex01')
+
+sys.path.append("/path/to/ex01")
 
 from TinyStatistician import TinyStatistician as ts
 

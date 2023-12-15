@@ -12,7 +12,8 @@ do
 done
 
 python3 ex00/test.py
-python3 ex01/TinyStatistician.py
+# python3 ex01/TinyStatistician.py
+# for executing ex01, do python3 ex01/test.py
 python3 ex02/prediction.py
 python3 ex03/tools.py
 python3 ex04/prediction.py
